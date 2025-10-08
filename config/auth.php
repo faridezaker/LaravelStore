@@ -40,11 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'guards' => [
-            'api' => [
-                'driver' => 'jwt',
-                'provider' => 'users',
-            ],
+
+        'api' => [
+            'driver' => 'jwt',
+            'provider' => 'users',
+            'throttle:10,1',
         ],
     ],
 

@@ -17,11 +17,12 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('address');
-            $table->string('phone');
-            $table->string('postal_code');
-            $table->foreignId('province_id')->constrained();
-            $table->foreignId('city_id')->constrained();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->foreignId('province_id')->nullable()->constrained();
+            $table->foreignId('city_id')->nullable()->constrained();
+            $table->string('role')->default('user');
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
