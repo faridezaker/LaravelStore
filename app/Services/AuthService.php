@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Jobs\SendVerificationEmailJob;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
@@ -17,7 +18,9 @@ class AuthService extends BaseService
     public function create($data)
     {
         $data['password'] = bcrypt($data['password']);
-        return parent::create($data);
+        $user = parent::create($data);
+        SendVerificationEmailJob::dispatch($user);
+        return $user;
     }
 
 }
